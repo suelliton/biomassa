@@ -28,21 +28,21 @@
           </div>
           <div class="row">
               <div class="col-md-6" ng-hide="mostrar_explicacao">
-              
-                <h3 id="pergunta" class="text-left">{{pergunta_vez}}</h3>
+
+                <h3 id="pergunta" class="text-left" ng-bind="pergunta_vez">{{pergunta_vez}}</h3>
                 <select class="form-control" ng-hide="!iniciou  || mostrar_explicacao" ng-model="pergunta.valor"  ng-options=" valor.nome  for valor in valores" >
                   <option value="">Nível</option>
                 </select>
               </div>
               <!--modulo explicação-->
               <div class="col-md-6 " ng-show="mostrar_explicacao" >
-                <h3>{{exp}}</h3>
+                <h3 ng-bind="exp">{{exp}}</h3>
                   <ul  ng-repeat="pergunta in perguntas " >
-                    <li ng-show="mostrar_explicacao">{{pergunta.pergunta}}</li>
-                    <li ng-show="mostrar_explicacao">Nível {{pergunta.resultado}}</li>
+                    <li ng-show="mostrar_explicacao" ng-bind="pergunta.pergunta">{{pergunta.pergunta}}</li>
+                    <li ng-show="mostrar_explicacao" ng-bind="pergunta.resultado">Nível {{pergunta.resultado}}</li>
                   </ul>
-                <h3>{{exp2}}</h3>
-                <h2 id="biomassa">{{bio}} Kg/m^2</h2>
+                <h3 ng-bind="exp2">{{exp2}}</h3>
+                <h2 id="biomassa" ng-bind="bio">{{bio}} Kg/m^2</h2>
               </div>
           </div>
         </div>
