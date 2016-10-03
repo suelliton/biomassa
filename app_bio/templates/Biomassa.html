@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="biomassa">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Biomassa economica">
+    <title>Biomassa economica</title>
+    <link rel="stylesheet" href="static/lib/bootstrap/css/bootstrap.css" />
+    <script src="static/lib/angular/angular.js"></script>
+    <script src="static/lib/programa.js"></script>
+
+    <link rel="stylesheet" href="static/lib/estilo.css" />
+
+
+  </head>
+  <body ng-controller="biomassacrtl">
+    <div id="titulo" class="container-fluid">
+      <h1  class="text-center">Sistema Especialista para estimativa de Biomassa Econômica </h1>
+    </div>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-12 offset" >
+            <h4 id="descricao" class="text-justify" ng-show="!iniciou">O Sistema Especialista para cálculo de Biomassa Econômica foi desenvolvido com base
+              em conhecimento especializado na área de criação de tilápias em sistemas semi-intensivos,
+              visa trazer para o produtor uma segunda opinião quanto ao tempo certo de despesca de acordo
+              com o cenário em que se encontra o sistema de produção. </h4>
+          </div>
+          <div class="row">
+              <div class="col-md-6" ng-hide="mostrar_explicacao">
+              
+                <h3 id="pergunta" class="text-left">{{pergunta_vez}}</h3>
+                <select class="form-control" ng-hide="!iniciou  || mostrar_explicacao" ng-model="pergunta.valor"  ng-options=" valor.nome  for valor in valores" >
+                  <option value="">Nível</option>
+                </select>
+              </div>
+              <!--modulo explicação-->
+              <div class="col-md-6 " ng-show="mostrar_explicacao" >
+                <h3>{{exp}}</h3>
+                  <ul  ng-repeat="pergunta in perguntas " >
+                    <li ng-show="mostrar_explicacao">{{pergunta.pergunta}}</li>
+                    <li ng-show="mostrar_explicacao">Nível {{pergunta.resultado}}</li>
+                  </ul>
+                <h3>{{exp2}}</h3>
+                <h2 id="biomassa">{{bio}} Kg/m^2</h2>
+              </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary btn-block" ng-disabled="indice_pergunta > 7 "  ng-show="iniciou" ng-click="avancar(indice_pergunta)">Avançar</button>
+              </div>
+              <div class="col-md-3">
+              <button type="button" class="btn btn-primary btn-block" ng-disabled="indice_pergunta == 0" ng-show="iniciou " ng-click="voltar(indice_pergunta)">Voltar</button>
+              <button type="button" class="btn btn-warning btn-block" ng-show="iniciou" ng-click="reiniciar()">Reiniciar</button>
+              </div>
+              <button type="button" class="btn btn-success btn-block" ng-hide="iniciou" ng-click="iniciar()">Iniciar</button>
+              </div>
+            </div>
+    </div>
+
+
+    <div class="footer navbar-fixed-bottom">
+      <h4 class="text-center "id="text-rodape" style="font-size: 14px;">SE Biomassa Econômica &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Versão Beta &nbsp &nbsp &nbsp &nbsp &nbsp Copyright&copy All rights reserved  </h4>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"> </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </body>
+</html>
